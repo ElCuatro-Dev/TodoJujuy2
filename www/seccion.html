@@ -22,10 +22,12 @@ function openDeviceBrowser (externalLinkToOpen){
 $(document).ready(function(){		
 	//Cargamos Notas portada
 	var data = {							
-		"key": "test",				
+		"key": "test",
+		"ampliarseccion": "true",
 		"secciones": "true",
 		"clima": "true",
-		"cines": "true",
+		"id": getQueryVariable("id"),
+		"sid": getQueryVariable("sid")
 	};
 	data = $(this).serialize() + "&" + $.param(data);				
 	$.ajax({
@@ -44,7 +46,7 @@ $(document).ready(function(){
 			//Cargamos el clima		
 			$('#contenido_clima').html('<img src="http://www.todojujuy.com/img/encabezado/clima_80b_'+response.respData.clima.cw_icono+'.png" width="18" height="18" /> T: '+response.respData.clima.cw_temp+'&deg;C <span class="barrita">|</span> H: '+response.respData.clima.cw_humedad+' <a href="./ampliar-clima.html" class="ver_mas">VER CLIMA</a>');
 			//Cargamos las noticias
-			$('#noticia').html(response.respData.cines.html);
+			$('#noticia').html(response.respData.ampliarseccion.html);
 			//navigator.splashscreen.hide();					
 		},
 		error: function (responseData, textStatus, errorThrown) {
@@ -163,7 +165,7 @@ function exitAppPopup() {
         <div class="titulo">CINES</div></div>
     <div class="item">
     	<div class="icono">
-        	<a href="ampliar-clima.html"><span class="icon-cloud t30"></span></a>
+        	<a href="clima.html?cod=332473"><span class="icon-cloud t30"></span></a>
         </div>
         <div class="titulo">EL TIEMPO</div>
     </div>

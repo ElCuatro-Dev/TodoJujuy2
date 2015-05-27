@@ -25,7 +25,7 @@ $(document).ready(function(){
 		"key": "test",				
 		"secciones": "true",
 		"clima": "true",
-		"cines": "true",
+		"horoscopo": "true",
 	};
 	data = $(this).serialize() + "&" + $.param(data);				
 	$.ajax({
@@ -44,7 +44,7 @@ $(document).ready(function(){
 			//Cargamos el clima		
 			$('#contenido_clima').html('<img src="http://www.todojujuy.com/img/encabezado/clima_80b_'+response.respData.clima.cw_icono+'.png" width="18" height="18" /> T: '+response.respData.clima.cw_temp+'&deg;C <span class="barrita">|</span> H: '+response.respData.clima.cw_humedad+' <a href="./ampliar-clima.html" class="ver_mas">VER CLIMA</a>');
 			//Cargamos las noticias
-			$('#noticia').html(response.respData.cines.html);
+			$('#noticia').html(response.respData.horoscopo.html);
 			//navigator.splashscreen.hide();					
 		},
 		error: function (responseData, textStatus, errorThrown) {
