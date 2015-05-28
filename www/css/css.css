@@ -757,7 +757,7 @@ Nota Ampliar - Te interesa
 /***********************************************
 	CINES
 ***********************************************/
-#cartelera { padding: 5px 1%; color: #4D4D4D; width: 98%; font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 1.2em; line-height: 1.3em; }
+#cartelera { padding: 5px 0; color: #4D4D4D; width: 100%; font-size: 1.2em; line-height: 1.3em; }
 #cartelera h2 { padding: 8px 0; font-size: 15px; line-height:30px; height:30px; width:100%; float:left; color:#414244; background-color:#FFF; }
 #cartelera h4 { background-color: #eee; border-bottom: 3px solid #666; border-top: 1px dotted #CCCCCC; margin: 8px 0 4px 0; padding: 10px 0 5px 0; text-align: center; font-weight:400 !important; }
 #cartelera .cine_nombre { color: #C00; font-weight: bold; margin-bottom: 6px; }
