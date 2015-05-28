@@ -26,8 +26,8 @@
   <gap:splash src="res/img/winphone/splash.jpg" gap:platform="winphone" />
   <preference name="android-installLocation" value="preferExternal" />
   <preference name="AutoHideSplashScreen" value="false"/>
-  <preference name="splash-screen-duration" value="6000" />
-  <preference name="SplashScreenDelay" value="6000" />   
+  <preference name="splash-screen-duration" value="8000" />
+  <preference name="SplashScreenDelay" value="8000" />   
   <preference name="permissions" value="none" />
   <preference name="orientation" value="portrait" />
   <gap:plugin name="nl.x-services.plugins.socialsharing" source="plugins.cordova.io" />

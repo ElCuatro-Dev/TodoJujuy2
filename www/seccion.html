@@ -18,6 +18,19 @@ function onDeviceReady() {
 function openDeviceBrowser (externalLinkToOpen){
 	window.open(externalLinkToOpen, '_system', 'location=no');
 }	
+document.addEventListener("exitButton",function(){
+    navigator.notification.confirm(
+           'Do you want to quit', 
+           onConfirmQuit, 
+           'QUIT TITLE', 
+           'OK,Cancel'  
+    );
+}, true);
+function onConfirmQuit(button){
+   if(button == "1"){
+     navigator.app.exitApp(); 
+   }
+}
 </script>
 <script>
 $(document).ready(function(){		
@@ -69,19 +82,6 @@ $(document).ready(function(e) {
 function ocultarMenu() {
 	$('#secciones').toggle( "blind" );
 };
-document.addEventListener("exitButton",function(){
-    navigator.notification.confirm(
-           'Do you want to quit', 
-           onConfirmQuit, 
-           'QUIT TITLE', 
-           'OK,Cancel'  
-    );
-}, true);
-function onConfirmQuit(button){
-   if(button == "1"){
-     navigator.app.exitApp(); 
-   }
-}
 </script>
 </head>
 
@@ -141,36 +141,6 @@ function onConfirmQuit(button){
         </div>
     </div>
 </div>
-</div> 
-<div id="footer"><div id="menu_bottom">
-	<div class="item">
-    	<div class="icono">
-        	<a href="#top"><span class="icon-angle-double-up t30"></span></a>
-        </div>
-        <div class="titulo">SUBIR</div>
-    </div>
-    <div class="item">
-    	<div class="icono"><a href="farmacias.html"><span class="icon-aid-kit t30"></span></a>
-        </div>
-        <div class="titulo">FARMACIAS</div>
-    </div>
-    <div class="item">
-    	<div class="icono">
-        	<a href="cines.html"><span class="icon-film t30"></span></a>
-        </div>
-        <div class="titulo">CINES</div></div>
-    <div class="item">
-    	<div class="icono">
-        	<a href="clima.html?cod=332473"><span class="icon-cloud t30"></span></a>
-        </div>
-        <div class="titulo">EL TIEMPO</div>
-    </div>
-    <div class="item">
-    	<div class="icono">
-        	<a href="javascript:onConfirmQuit(1);"><span class="icon-power-off t30"></span></a>
-        </div>
-        <div class="titulo">SALIR</div>
-	</div>
-</div></div>
+</div>
 </body>
 </html>

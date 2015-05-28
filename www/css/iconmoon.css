@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('../fonts/icomoon.eot?-y1sb4f');
-	src:url('../fonts/icomoon.eot?#iefix-y1sb4f') format('embedded-opentype'),
-		url('../fonts/icomoon.woff?-y1sb4f') format('woff'),
-		url('../fonts/icomoon.ttf?-y1sb4f') format('truetype'),
-		url('../fonts/icomoon.svg?-y1sb4f#icomoon') format('svg');
+	src:url('../fonts/icomoon.eot?bbuq65');
+	src:url('../fonts/icomoon.eot?#iefixbbuq65') format('embedded-opentype'),
+		url('../fonts/icomoon.woff?bbuq65') format('woff'),
+		url('../fonts/icomoon.ttf?bbuq65') format('truetype'),
+		url('../fonts/icomoon.svg?bbuq65#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -37,6 +37,9 @@
 }
 .icon-power-off:before {
 	content: "\f011";
+}
+.icon-home:before {
+	content: "\f015";
 }
 .icon-headphones:before {
 	content: "\f025";
@@ -95,6 +98,6 @@
 
 .gris { color: #656464; }
 .rojo { color: #d73a3a; }
-.blanco {color: #FFF ;}
+.blanco {color: #FFF;}
 
 .x2 { font-size: 2em; padding: 0.4em 0; line-height: 2.1em }
