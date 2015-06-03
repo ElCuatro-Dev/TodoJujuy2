@@ -2,6 +2,9 @@
 /* CSS App TodoJujuy */
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:300,500,700);
+html { 
+	-webkit-tap-highlight-color: transparent; /* For some Androids */
+}
 body {
 	margin:0;
 	padding:0;		
@@ -35,11 +38,14 @@ body {
 	z-index:980;
 }
 #header .m3{
-	width:33%;
-	height:40px;
+	width:44px;
+	height:58px;
+	background-color:transparent;
+	 -webkit-tap-highlight-color: transparent; /* For some Androids */
 	float:right;
-	right:4px;
-	top:4px;	
+	right:0;
+	top:0;
+	padding:4px 4px 0 0;	
 	position:absolute;
 	z-index:990;
 }
