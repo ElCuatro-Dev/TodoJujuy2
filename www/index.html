@@ -1,187 +1,919 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>TodoJujuy</title>
-<link rel="stylesheet" type="text/css" href="css/css.css" />
-<link rel="stylesheet" type="text/css" href="css/iconmoon.css" />
-<link rel="stylesheet" type="text/css" href="css/menu.css" />
-<meta name="viewport" content="width=device-width, user-scalable=no">
-<script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-<script type="text/javascript" charset="utf-8" src="phonegap-1.0.0.js"></script>
-<script type="text/javascript" charset="utf-8">	
-document.addEventListener("deviceready", onDeviceReady, false);	
-function onDeviceReady() {
-	window.analytics.startTrackerWithId('UA-57275656-3')
-}
-function openDeviceBrowser (externalLinkToOpen){
-	window.open(externalLinkToOpen, '_system', 'location=no');
-}	
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="viewport" content="width=300;  initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=1;"/>
+<meta property="og:title" content="Todo Jujuy Móvil | Una multitud dijo #NiUnaMenos en Jujuy" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://m.todojujuy.com" />
+<meta property="og:image" content="http://www.todojujuy.com/movil/img/logo_todojujuy_movil.100x100.png" />
+<meta property="og:site_name" content="Todo Jujuy Móvil" />
+<meta property="og:region" content="San Salvador de Jujuy" />
+<meta property="og:country-name" content="Argentina"/>
+<link rel="stylesheet" href="http://m.todojujuy.com/movil/jquery-ui.css" />
+<link rel="stylesheet" href="http://m.todojujuy.com/movil/menu.css">
+<link rel="stylesheet" href="http://m.todojujuy.com/movil/iconmoon.css?v=9240359">
+<script src="http://m.todojujuy.com/movil/js/jquery-1.9.1.js"></script>
+<script src="http://m.todojujuy.com/movil/js/menu-secciones.js"></script>
+<script src="http://m.todojujuy.com/movil/js/modernizr.min.js"></script>
 
-document.addEventListener("exitButton",function(){
-    navigator.notification.confirm(
-           'Do you want to quit', 
-           onConfirmQuit, 
-           'QUIT TITLE', 
-           'OK,Cancel'  
-    );
-}, true);
-function onConfirmQuit(button){
-   if(button == "1"){
-     navigator.app.exitApp(); 
-   }
-}
+<script type="text/javascript">
 
-$(document).ready(function(){	
-
-	$(".nav-button").click(function () {
-		$(".nav-button,.primary-nav").toggleClass("open");
-	}); 
-	
-	//Cargamos Notas portada
-	var data = {							
-		"key": "test",
-		"noticias": "true",
-		"secciones": "true",
-		"clima": "true",
-	};
-	data = $(this).serialize() + "&" + $.param(data);					
+/*
+$(document).ready(function(){
 	$.ajax({
-		async: true,
-	  	beforeSend: function() { $('#cargando').show(); }, //Show spinner
-      	complete: function() { $('#cargando').hide(); }, //Hide spinner
-		type: "GET",
-		dataType: "jsonp",
-		url: "http://m.todojujuy.com/webservice/index_v2015?callback=?",
-		data: data,
-		success: function(response) {
-			$('#cargando').hide();
-			$('#fecha_actual').html(response.respData.fecha);
-			//Cargamos las secciones
-			$('.secciones').html(response.respData.secciones.html);					
-			//Cargamos el clima		
-			$('#contenido_clima').html('<img src="http://www.todojujuy.com/img/encabezado/clima_80b_'+response.respData.clima.cw_icono+'.png" width="18" height="18" /> T: '+response.respData.clima.cw_temp+'&deg;C <span class="barrita">|</span> H: '+response.respData.clima.cw_humedad+' <a href="./ampliar-clima.html" class="ver_mas">VER CLIMA</a>');
-			//Cargamos las noticias
-			$('#noticia').html(response.respData.noticias.html);
-			//navigator.splashscreen.hide();					
-		},
-		error: function (responseData, textStatus, errorThrown) {
-			$('#cargando').html('Por favor intenta nuevamente en unos instantes. [#Error]');		
-			$('#cargando').show();				
-		} 
-	});	
-});
-$(document).ready(function(e) {
-    $('.m3').click(function() { 
-		$('#secciones').toggle();
-	});
-	
-	$('.nav-close').click(function(e) {			
-		$('#secciones').toggle();
+		url: './ap',
+		type: 'POST',
+		data: {h: $(window).height(), w: $(window).width()}
 	});
 });
+*/
 
-function ocultarMenu() {
-	$('#secciones').toggle();
-};
 </script>
+<!-- JS para partidos MAM -->
+<script type="text/javascript" src="http://m.todojujuy.com/movil/js/jquery/jquery.bxslider.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://m.todojujuy.com/movil/bxslider-partidos.css" />
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.bxslider-partidos').bxSlider({
+        slideMargin: 2,
+        infiniteLoop: true,
+        pager: false,
+        auto: true
+    });
+});
+</script>
+
+<!-- Fin JS MAM -->
+ 	
+<title>TodoJujuy.com - Movil | Una multitud dijo #NiUnaMenos en Jujuy</title>
+<link href="http://m.todojujuy.com/movil/css_movil.css?v=9240359" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-<div id="menu">
-	<button class="logo">logo</button>
-    <button class="nav-button">Menu</button>
-    <ul class="primary-nav">
-        <li><a href="en-vivo.html"><span class="icon-circle-right rojo"></span> EN VIVO</a></li>
-        <li><a href="index.html"><span class="icon-circle-right rojo"></span> HOY</a></li>
-        <li class="parent"><a href="#">Secciones</a>
-            <ul class="secciones">
-                <li class="nav-titulo">Cargando secciones</li>
-            </ul>
-        </li>
-        <li class="parent"><a href="#">Servicios</a>
-            <ul>
-                <li><a href="cines.html"><span class="icon-chevron-right rojo"></span> Cartelera de Cine</a></li>
-                <li><a href="farmacis.html"><span class="icon-chevron-right rojo"></span> Farmacias de Turno</a></li>
-                <li><a href="horoscopo.html"><span class="icon-chevron-right rojo"></span> Hor&oacute;scopo</a></li>
-                <li><a href="clima.html"><span class="icon-chevron-right rojo"></span> Clima</a></li>
-                <li><a href="cotizacion.html"><span class="icon-chevron-right rojo"></span> Cotizaci&oacute;n de Monedas</a></li>
-            </ul>
-        </li>
-        <li class="parent"><a href="#">Medios en vivo</a>
-            <ul>
-                <li onClick="openDeviceBrowser('http://m.canal4jujuy.com.ar');"><a href="#"><span class="icon-youtube-play rojo"></span> Canal 4 Jujuy</a></li>
-                <li onClick="openDeviceBrowser('http://m.radiocityfm.com');"><a href="#"><span class="icon-headphones rojo"></span> Radio City FM 107.1</a></li>
-                <li onClick="openDeviceBrowser('http://m.radiofiestafm.com.ar');"><a href="#"><span class="icon-headphones rojo"></span> Radio Fiesta FM 91.7</a></li>
-            </ul>
-        </li>
-    </ul>
-</div>
-<!--
-<div id="header">
-  <div class="m1"> </div>
-  <div class="m2"> <a href="index.html">
-    <div class="logotodojujuy"></div>
-    </a> </div>
-  <div class="m3">
-    <div id="menu_secciones">
-      <div class="nav-menu"></div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+  ga('create', 'UA-57275656-3', 'auto', {'name': 'tjgeneral'});
+  ga('tjgeneral.send', 'pageview');
+  
+  ga('create', 'UA-57275656-2', 'auto', {'name': 'tjmovil'});
+  ga('tjmovil.send', 'pageview');  
+</script>
+
+<div id="wrapper">
+  	<div id="head"> 
+		<a href="http://m.todojujuy.com/"><div class="logotodojujuy"></div></a>		
+        <div class="nav-menu"><img src="http://m.todojujuy.com/movil/img/nav-menu.png" /></div>
     </div>
-  </div>
-  <div class="separador"></div>
-</div>
-<div id="secciones">
-  <div id="lista_secciones">
+    <div id="fecha_actual">
+		Jueves 04 de junio de 2015 | S. S. de Jujuy
+    </div> 
     <div id="menu-nuevo">
-      <div class="menu1">
-        <ul class="secciones">
-          <li class="nav-titulo">Cargando secciones</li>
-        </ul>
-      </div>
-      <div class="menu2">
+    	<ul>
+        	<li class="nav-titulo">SECCIONES</li>
+                        <li> <a href="./todojujuy" style="border-left-color:#4498D0">TODO JUJUY</a></li>
+                        <li> <a href="./todoelinterior" style="border-left-color:#15699D">TODO EL INTERIOR</a></li>
+                        <li> <a href="./todoelpais" style="border-left-color:#7F4908">TODO EL PAÍS</a></li>
+                        <li> <a href="./todoelmundo" style="border-left-color:#989898">TODO EL MUNDO</a></li>
+                        <li> <a href="./policiales" style="border-left-color:#D50000">POLICIALES</a></li>
+                        <li> <a href="./deportes" style="border-left-color:#478627">DEPORTES</a></li>
+                        <li> <a href="./salud" style="border-left-color:#84CCC3">SALUD</a></li>
+                        <li> <a href="./espectaculos" style="border-left-color:#a73d4c">ESPECTÁCULOS</a></li>
+                        <li> <a href="./todotecno" style="border-left-color:#e9a124">TODO TECNO</a></li>
+                        <li> <a href="./politica" style="border-left-color:#1aa7a9">POLÍTICA</a></li>
+                        <li> <a href="./detodounpoco" style="border-left-color:#114e50">DE TODO UN POCO</a></li>
+                        <li> <a href="./whatsapp" style="border-left-color:#169a0c">WHATSAPP</a></li>
+                        <li> <a href="./especiales/fne2015" style="border-left-color:#782789">FNE 2015</a></li>
+                    </ul>
         <ul>
-          <li class="nav-titulo nav-titulo-3"><a title="EN VIVO" href="en-vivo.html" class="sin-borde"><span class="icon-circle-right rojo"></span> EN VIVO</a></li>
-          <li class="nav-titulo nav-titulo-3"><a title="HOY" href="index.html" class="sin-borde"><span class="icon-circle-right rojo"></span> HOY</a></li>
-          <li class="nav-titulo nav-titulo-2">SERVICIOS</li>
-          <li class="der"><a href="cines.html">CARTELERA DE CINE</a></li>
-          <li class="der"><a href="farmacias.html">FARMACIAS DE TURNO</a></li>
-          <li class="der"><a href="ampliar-clima.html">CLIMA</a></li>
-          <li class="der"><a href="cotizacion.html">COTIZACI&Oacute;N MONEDAS</a></li>
-          <li class="der"><a href="horoscopo.html">HOR&Oacute;SCOPO</a></li>
-          <li class="nav-titulo nav-titulo-2">MEDIOS EN VIVO</li>
-          <li class="der link" onClick="openDeviceBrowser('http://m.canal4jujuy.com.ar');"><span class="icon-youtube-play rojo"></span> Canal 4 Jujuy</li>
-          <li class="der link" onClick="openDeviceBrowser('http://m.radiocityfm.com');"><span class="icon-headphones rojo"></span> Radio City FM 107.1</li>
-          <li class="der link" onClick="openDeviceBrowser('http://m.radiofiestafm.com.ar');"><span class="icon-headphones rojo"></span> Radio Fiesta FM 91.7</li>
+            <li class="nav-titulo nav-titulo-3"><a title="EN VIVO" href="http://m.todojujuy.com/en-vivo" class="sin-borde"><span class="icon-circle-right rojo"></span> EN VIVO</a></li>
+            <li class="nav-titulo nav-titulo-3"><a title="HOY" href="http://m.todojujuy.com/" class="sin-borde"><span class="icon-circle-right rojo"></span> HOY</a></li>
+        	<li class="nav-titulo nav-titulo-2">SERVICIOS</li>
+            <li class="der"><a href="cines">CARTELERA DE CINE</a></li>
+            <li class="der"><a href="farmacias">FARMACIAS DE TURNO</a></li>
+            <li class="der"><a href="ampliar-clima">CLIMA</a></li>
+            <li class="der"><a href="cotizacion">COTIZACI&Oacute;N MONEDAS</a></li>
+            <li class="der"><a href="horoscopo">HOR&Oacute;SCOPO</a></li>
+            <li class="nav-titulo nav-titulo-2">MEDIOS EN VIVO</li>
+            <li class="der"><a href="http://www.canal4jujuy.com.ar" target="_blank"><span class="icon-play rojo"></span> Canal 4 Jujuy</a></li>
+            <li class="der"><a href="http://www.radiocityfm.com" target="_blank"><span class="icon-headphones rojo"></span> Radio City FM 107.1</a></li>
+            <li class="der"><a href="http://www.radiofiestafm.com.ar" target="_blank"><span class="icon-headphones rojo"></span> Radio Fiesta FM 91.7</a></li>
         </ul>
-      </div>
-      <div class="nav-close"><span class="icon-angle-double-up"></span></div>
     </div>
-  </div>
-</div>
--->
-<div id="cargando">Cargando contenido, espere por favor...<br />
-  <div class="loading"></div>
-</div>
-<div id="fecha_actual"></div>
-<div id="contenido_clima"></div>
-<div id="sitewrap" style="margin-bottom:10px">
-  <div id="content">
-    <div class="wrapper-outer">
-      <div class="content-wrapper">
-        <div id="lista_ultimom">ULTIMO MOMENTO</div>
-        <marquee id="um">
-        <div id="lista_ult_mom"></div>
-        </marquee>
-        <div id="noticia"></div>
-      </div>
+    <div id="menu">
+        <div class="nav-main">
+            <ul>
+                <li> 
+                    <a title="HOY" href="http://m.todojujuy.com/"> HOY</a>
+                </li>
+                <li> 
+                    <a title="EN VIVO" href="http://m.todojujuy.com/en-vivo">EN VIVO</a>
+                </li>
+                <li>
+                    <a title="Buscar" href="http://m.todojujuy.com/busqueda">Buscar</a> 
+                </li><!--
+                <li>
+                    <a title="Radios" href="http://m.todojujuy.com/radios">Radios</a> 
+                </li>-->
+                <li>
+                    <div class="menu-secciones">Secciones</div>
+                </li>
+                <li>
+                                	<a href="#menuservicios" target="_self" title="Servicios">Servicios</a>
+                                </li>
+            </ul>            
+        </div>
+        <div id="menu-secciones-listado" style="display:none">
+                        <div id="lista">
+                <p class="link_seccion">
+                    <div id="seccion" style="background:#4498D0 url(m/img/back_seccion.png) repeat-x; border-bottom:1px solid #666; font-size:10px">
+                        <a href="./todojujuy" class="link_seccion">TODO JUJUY</a>
+                    </div>
+                </p>
+            </div>
+                        <div id="lista">
+                <p class="link_seccion">
+                    <div id="seccion" style="background:#15699D url(m/img/back_seccion.png) repeat-x; border-bottom:1px solid #666; font-size:10px">
+                        <a href="./todoelinterior" class="link_seccion">TODO EL INTERIOR</a>
+                    </div>
+                </p>
+            </div>
+                        <div id="lista">
+                <p class="link_seccion">
+                    <div id="seccion" style="background:#7F4908 url(m/img/back_seccion.png) repeat-x; border-bottom:1px solid #666; font-size:10px">
+                        <a href="./todoelpais" class="link_seccion">TODO EL PAÍS</a>
+                    </div>
+                </p>
+            </div>
+                        <div id="lista">
+                <p class="link_seccion">
+                    <div id="seccion" style="background:#989898 url(m/img/back_seccion.png) repeat-x; border-bottom:1px solid #666; font-size:10px">
+                        <a href="./todoelmundo" class="link_seccion">TODO EL MUNDO</a>
+                    </div>
+                </p>
+            </div>
+                        <div id="lista">
+                <p class="link_seccion">
+                    <div id="seccion" style="background:#D50000 url(m/img/back_seccion.png) repeat-x; border-bottom:1px solid #666; font-size:10px">
+                        <a href="./policiales" class="link_seccion">POLICIALES</a>
+                    </div>
+                </p>
+            </div>
+                        <div id="lista">
+                <p class="link_seccion">
+                    <div id="seccion" style="background:#478627 url(m/img/back_seccion.png) repeat-x; border-bottom:1px solid #666; font-size:10px">
+                        <a href="./deportes" class="link_seccion">DEPORTES</a>
+                    </div>
+                </p>
+            </div>
+                        <div id="lista">
+                <p class="link_seccion">
+                    <div id="seccion" style="background:#84CCC3 url(m/img/back_seccion.png) repeat-x; border-bottom:1px solid #666; font-size:10px">
+                        <a href="./salud" class="link_seccion">SALUD</a>
+                    </div>
+                </p>
+            </div>
+                        <div id="lista">
+                <p class="link_seccion">
+                    <div id="seccion" style="background:#a73d4c url(m/img/back_seccion.png) repeat-x; border-bottom:1px solid #666; font-size:10px">
+                        <a href="./espectaculos" class="link_seccion">ESPECTÁCULOS</a>
+                    </div>
+                </p>
+            </div>
+                        <div id="lista">
+                <p class="link_seccion">
+                    <div id="seccion" style="background:#e9a124 url(m/img/back_seccion.png) repeat-x; border-bottom:1px solid #666; font-size:10px">
+                        <a href="./todotecno" class="link_seccion">TODO TECNO</a>
+                    </div>
+                </p>
+            </div>
+                        <div id="lista">
+                <p class="link_seccion">
+                    <div id="seccion" style="background:#1aa7a9 url(m/img/back_seccion.png) repeat-x; border-bottom:1px solid #666; font-size:10px">
+                        <a href="./politica" class="link_seccion">POLÍTICA</a>
+                    </div>
+                </p>
+            </div>
+                        <div id="lista">
+                <p class="link_seccion">
+                    <div id="seccion" style="background:#114e50 url(m/img/back_seccion.png) repeat-x; border-bottom:1px solid #666; font-size:10px">
+                        <a href="./detodounpoco" class="link_seccion">DE TODO UN POCO</a>
+                    </div>
+                </p>
+            </div>
+                        <div id="lista">
+                <p class="link_seccion">
+                    <div id="seccion" style="background:#169a0c url(m/img/back_seccion.png) repeat-x; border-bottom:1px solid #666; font-size:10px">
+                        <a href="./whatsapp" class="link_seccion">WHATSAPP</a>
+                    </div>
+                </p>
+            </div>
+                        <div id="lista">
+                <p class="link_seccion">
+                    <div id="seccion" style="background:#782789 url(m/img/back_seccion.png) repeat-x; border-bottom:1px solid #666; font-size:10px">
+                        <a href="./especiales/fne2015" class="link_seccion">FNE 2015</a>
+                    </div>
+                </p>
+            </div>
+                    </div>
     </div>
-  </div>
+</div><div id="clima">       
+    <div class="info_clima">
+       	  <img src="../img/encabezado/clima_80b_clear.png" width="18" height="18" /> T: 24&deg;C <span class="barrita">|</span> H: 53% <a href="./ampliar-clima"><span class="ver_mas">VER CLIMA</span></a>
+    </div>
 </div>
+<div align="center" id="escritorio">
+<a title="VERSI&Oacute;N DE ESCRITORIO" href="http://www.todojujuy.com/?escritorio=true">Versi&oacute;n de escritorio</a>
+</div><div id="content"> 
+	      
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s" style="margin:0 0 0 2px;">
+        	Noticias Breves
+            <span class="barrita">&raquo;</span>            
+            <span class="titulos_f">
+                            04/06 11:36
+                        </span>
+        </p>
+        <span class="titulos_m">Corte en la Legislatura y en ruta N° 66</span>
+        <p style="margin:5px;"></p>
+    </div>
+</div>             
+          
+   	<div id="partidito">
+        <div class="partitido-titulo">PARTIDOS EN VIVO</div>
+                    <iframe scrolling="no" frameborder="0" src="http://www.todojujuy.com/datafactory/html/minutofutbol1.html" width="100%" height="80"></iframe>
+		    </div>
+         
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todojujuy" style="background-color:#4498D0;">TODO JUJUY</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todojujuy/una-multitud-dijo-niunamenos-en-jujuy_35326">
+                <span class="titulos_f">
+                                    03/06 19:16 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todojujuy/una-multitud-dijo-niunamenos-en-jujuy_35326">Una multitud dijo #NiUnaMenos en Jujuy</a></div>
+                <div align="center">            	
+        <a href="http://m.todojujuy.com/todojujuy/una-multitud-dijo-niunamenos-en-jujuy_35326">
+            <img src="http://www.todojujuy.com/imagenes/320x171/strict/img/7c85dd52205756051fa3442c963d05cf.jpg" width="100%" alt="#NiUnaMenos en Jujuy" />
+        </a>
+        </div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Miles de jujeños marcharon bajo el lema “Ni una menos”, en adhesión a la campaña nacional contra el femicidio. La convocatoria tuvo lugar en las plazas principales de todas las ciudades de la provincia.</div>
+    </div>
+</div>    
+     
+    	        <div id="modulo-adsense">
+			<script type="text/javascript"><!--
+			google_ad_client = "ca-pub-4773746156262877";				
+			google_ad_slot = "0920665248";
+			google_override_format = true;
+			google_ad_width = 300;
+			google_ad_height = 50; 
+			//-->
+			</script>
+			<script type="text/javascript"
+			src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+        </div>
+            	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todojujuy" style="background-color:#4498D0;">TODO JUJUY</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todojujuy/gran-expectativa-para-la-temporada-invernal_35336">
+                <span class="titulos_f">
+                                    00:05 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todojujuy/gran-expectativa-para-la-temporada-invernal_35336">Gran expectativa para la temporada invernal</a></div>
+                <div align="center">            	
+        <a href="http://m.todojujuy.com/todojujuy/gran-expectativa-para-la-temporada-invernal_35336">
+            <img src="http://www.todojujuy.com/imagenes/320x171/strict/img/13ee23c7d084e7a5c00f0e9bb0f08da6.jpg" width="100%" alt="Purmamarca" />
+        </a>
+        </div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Jujuy se prepara para una nueva temporada alta en cuanto al turismo. El lanzamiento será el próximo 4 de julio en Purmamarca y se extenderá hasta los primeros días de agosto.</div>
+    </div>
+</div>    
+     
+    	    	        <div style="width:100%; background-color:#2c2c2c; height:101px; text-align:center; border-bottom:4px solid #d73a3a; float:left">
+        <div class="whatsapp"></div>        </div>        
+           
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todojujuy" style="background-color:#4498D0;">TODO JUJUY</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todojujuy/paritarias-y-salarios-en-el-consejo-federal-del-trabajo_35335">
+                <span class="titulos_f">
+                                    00:02 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todojujuy/paritarias-y-salarios-en-el-consejo-federal-del-trabajo_35335">Paritarias y salarios en el Consejo Federal del Trabajo</a></div>
+                <div align="center">            	
+        <a href="http://m.todojujuy.com/todojujuy/paritarias-y-salarios-en-el-consejo-federal-del-trabajo_35335">
+            <img src="http://www.todojujuy.com/imagenes/320x171/strict/img/1b1105c2808044b589daef2297b379f3.jpg" width="100%" alt="Miguel Morales - Sec. de Trabajo" />
+        </a>
+        </div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">La ley de paritaria y las conciliaciones obligatorias fueron los principales ejes de la 90 sesión del Consejo Federal del Trabajo realizada recientemente en Neuquén.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./policiales" style="background-color:#D50000;">POLICIALES</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/policiales/accidente-deja-una-victima-fatal-en-la-ruta-n9_35351">
+                <span class="titulos_f">
+                                    09:28 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/policiales/accidente-deja-una-victima-fatal-en-la-ruta-n9_35351">Accidente deja una víctima fatal en la ruta N°9</a></div>
+                <div align="center">            	
+        <a href="http://m.todojujuy.com/policiales/accidente-deja-una-victima-fatal-en-la-ruta-n9_35351">
+            <img src="http://www.todojujuy.com/imagenes/320x171/strict/img/cf096555acb19f77d22fcf5748cb3a6d.jpg" width="100%" alt="Accionar del Same" />
+        </a>
+        </div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">El miércoles a la mañana se registró un accidente de tránsito en ruta N°9 a la altura de Puesto del Marqués. Deja una víctima fatal identificado como Carlos Cari.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./policiales" style="background-color:#D50000;">POLICIALES</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/policiales/detuvieron-a-gendarmes-con-600-kilos-de-coca_35361">
+                <span class="titulos_f">
+                                    11:11 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/policiales/detuvieron-a-gendarmes-con-600-kilos-de-coca_35361">Detuvieron a gendarmes con 600 kilos de coca</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Ayer a primera hora detuvieron a dos gendarmes, que circulaban en un vehículo particular con kilos de hoja de coca.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todojujuy" style="background-color:#4498D0;">TODO JUJUY</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todojujuy/capacitan-sobre-marca-pais-en-jujuy_35339">
+                <span class="titulos_f">
+                                    01:02 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todojujuy/capacitan-sobre-marca-pais-en-jujuy_35339">Capacitan sobre Marca País en Jujuy</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Ayer se inició un ciclo de charlas y talleres de concientización sobre Marca País en la provincia de Jujuy con el fin de promover su uso.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todojujuy" style="background-color:#4498D0;">TODO JUJUY</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todojujuy/celebracion-de-corpus-christi-en-jujuy_35344">
+                <span class="titulos_f">
+                                    05:36 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todojujuy/celebracion-de-corpus-christi-en-jujuy_35344">Celebración de Corpus Christi en Jujuy</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Se realizará este sábado 6 de Junio desde la hora 16 en el atrio de la Iglesia Matriz con Misa Concelebrada y posterior procesión por calles de la ciudad.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todoelmundo" style="background-color:#989898;">TODO EL MUNDO</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todoelmundo/el-papa-publicara-su-primera-enciclica-sobre-medio-ambiente_35358">
+                <span class="titulos_f">
+                                    10:35 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todoelmundo/el-papa-publicara-su-primera-enciclica-sobre-medio-ambiente_35358">El papa publicará su primera encíclica sobre medio ambiente</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">La denominada &quot;encíclica verde&quot; del sumo pontífice, y primera de su autoría, se verá finalmente el 18 de junio.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./salud" style="background-color:#84CCC3;">SALUD</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/salud/la-felicidad-se-transmite-por-el-olfato_35359">
+                <span class="titulos_f">
+                                    11:38 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/salud/la-felicidad-se-transmite-por-el-olfato_35359">La felicidad se transmite por el olfato</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Solemos decir que la felicidad es algo que escapa a nuestros ojos: una sensación invisible que nos hace sonreír más y por la que los demás interpretan que estamos de mejor humor por algún motivo. Ahora, una nueva investigación llevada a cabo por científicos de la Universidad de Koc en Estambul (Turquía) y el Instituto Superior de Psicologia Aplicada de Lisboa (Portugal), afirma que la felicidad puede olerse y contagiarse, ya que el estado emocional de contento y alegría provoca que segreguemos ciertas sustancias químicas que salen secretadas por el sudor y que los demás pueden percibir e imbuirse de ello.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./deportes" style="background-color:#478627;">OTROS DEPORTES</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/deportes/gorriti-presento-la-indumentaria-oficial_35357">
+                <span class="titulos_f">
+                                    10:31 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/deportes/gorriti-presento-la-indumentaria-oficial_35357">Gorriti presentó la indumentaria oficial</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Ayer mediante un sencillo pero emotivo acto la dirigencia del Club Atlético Gorriti presentó oficialmente la indumentaria que utilizará durante la actual temporada. También quedó inaugurado el Salón Social y la Tienda Deportiva.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./deportes" style="background-color:#478627;">FÚTBOL</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/deportes/arranca-investigacion-a-dirigentes-del-futbol-boliviano_35353">
+                <span class="titulos_f">
+                                    10:07 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/deportes/arranca-investigacion-a-dirigentes-del-futbol-boliviano_35353">Arranca investigación a dirigentes del fútbol boliviano</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Una comisión del Ministerio Público comenzó el miércoles a investigar a los dirigentes de la Federación Boliviana de Fútbol (FBF) tras los actos de corrupción que se destaparon en la FIFA y Conmebol, informó una autoridad judicial.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todoelpais" style="background-color:#7F4908;">TODO EL PAÍS</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todoelpais/es-feriado-nacional-el-proximo-lunes-29-de-junio_35362">
+                <span class="titulos_f">
+                                    11:27 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todoelpais/es-feriado-nacional-el-proximo-lunes-29-de-junio_35362">¿Es feriado nacional el próximo lunes 29 de junio?</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">La versión circula con fuerza en diversos colegios del país y los docentes no paran de replicarla. Cadenas de WhatsApp y las redes sociales estallan con la consulta. Ese día se celebra el Bicentenario del Congreso de los Pueblos Libres.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todotecno" style="background-color:#e9a124;">TODO TECNO</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todotecno/por-primera-vez-una-robot-dio-clases-en-una-universidad_35354">
+                <span class="titulos_f">
+                                    10:19 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todotecno/por-primera-vez-una-robot-dio-clases-en-una-universidad_35354">Por primera vez, una robot dio clases en una universidad</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Una universidad china se convirtió en la primera institución educativa en contar con una profesora robot.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todojujuy" style="background-color:#4498D0;">TODO JUJUY</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todojujuy/contra-la-trata-capacitaron-a-efectivos-de-seguridad_35291">
+                <span class="titulos_f">
+                                    02:03 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todojujuy/contra-la-trata-capacitaron-a-efectivos-de-seguridad_35291">Contra la trata, capacitaron a efectivos de seguridad</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Se llevó a cabo una capacitación sobre el delito de trata de personas, destinada a personal de seguridad que trabajan en la provincia. Dan a conocer programa nacional.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todojujuy" style="background-color:#4498D0;">TODO JUJUY</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todojujuy/anses-tramites-de-pension-para-jubilados_35346">
+                <span class="titulos_f">
+                                    07:42 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todojujuy/anses-tramites-de-pension-para-jubilados_35346">ANSES: Tramites de pensión para jubilados</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Desde la ANSES indicaron que la pensión de un jubilado puede realizarse a través de www.anses.gob.ar. Asimismo dieron a conocer quiénes cobran hoy.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todoelpais" style="background-color:#7F4908;">TODO EL PAÍS</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todoelpais/para-anibal-massa-se-baja-de-la-candidatura_35352">
+                <span class="titulos_f">
+                                    11:13 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todoelpais/para-anibal-massa-se-baja-de-la-candidatura_35352">Para Aníbal: Massa se baja de la candidatura</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">El jefe de Gabinete afirmó que Massa “iría con una lista colectora como (candidato a) gobernador bonaerense” dentro de la boleta del PRO</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todoelmundo" style="background-color:#989898;">TODO EL MUNDO</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todoelmundo/el-fmi-reconoce-avance-material-en-argentina_35347">
+                <span class="titulos_f">
+                                    08:13 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todoelmundo/el-fmi-reconoce-avance-material-en-argentina_35347">El FMI reconoce “avance material” en Argentina</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">El directorio Ejecutivo del Fondo Monetario Internacional (FMI) reconoció el &quot;avance material&quot; concretado por Argentina en materia estadística.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todoelinterior" style="background-color:#15699D;">TODO EL INTERIOR</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todoelinterior/el-trabajo-de-la-tupac-es-importante-y-solidario_35295">
+                <span class="titulos_f">
+                                    03:04 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todoelinterior/el-trabajo-de-la-tupac-es-importante-y-solidario_35295">“El trabajo de la Tupac es importante y solidario”</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Dijo la Directora de la Escuela 176 de Palpalá, Marta Macedo, quien agradeció los trabajos que se realizaron en el establecimiento ubicado en el barrio Florida.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./policiales" style="background-color:#D50000;">POLICIALES</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/policiales/otro-femicidio-mientras-se-realizaba-la-marcha_35348">
+                <span class="titulos_f">
+                                    09:32 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/policiales/otro-femicidio-mientras-se-realizaba-la-marcha_35348">Otro femicidio mientras se realizaba la marcha</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Asesinó a su hija y quiso matar a su esposa mientras miles marchaban contra la violencia de género, en Corrientes. El agresor atacó a las mujeres con un cuchillo y luego se suicidó.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todoelinterior" style="background-color:#15699D;">TODO EL INTERIOR</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todoelinterior/familias-de-abra-pampa-cuentan-con-sus-escrituras_35328">
+                <span class="titulos_f">
+                                    04:24 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todoelinterior/familias-de-abra-pampa-cuentan-con-sus-escrituras_35328">Familias de Abra Pampa cuentan con sus escrituras</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Cuarenta familias recibieron las escrituras de los terrenos fiscales en los que habitan, en su mayoría desde hace más de 20 años.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todoelpais" style="background-color:#7F4908;">TODO EL PAÍS</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todoelpais/lagrimas-de-emocion-por-un-sueno-jugar-contra-river_35369">
+                <span class="titulos_f">
+                                    16:28 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todoelpais/lagrimas-de-emocion-por-un-sueno-jugar-contra-river_35369">Lágrimas de emoción por un sueño: jugar contra River</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Andrés Podlesch, defensor de Liniers de Bahía Blanca y fanático de River, se largó a llorar luego de haber vivido un momento muy especial en su vida.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todoelpais" style="background-color:#7F4908;">TODO EL PAÍS</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todoelpais/encuesta-marca-el-crecimiento-de-confianza-en-el-gobierno_35366">
+                <span class="titulos_f">
+                                    16:06 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todoelpais/encuesta-marca-el-crecimiento-de-confianza-en-el-gobierno_35366">Encuesta marca el crecimiento de confianza en el Gobierno</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Registró un aumento de 10% en mayo respecto de abril. Así lo establece el informe de Índice de Confianza en el Gobierno, que elabora la Universidad Torcuato Di Tella, a partir de una investigación de Poliarquía.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todojujuy" style="background-color:#4498D0;">TODO JUJUY</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todojujuy/convenio-para-garantizar-la-educacion-ambiental_35327">
+                <span class="titulos_f">
+                                    05:18 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todojujuy/convenio-para-garantizar-la-educacion-ambiental_35327">Convenio para garantizar la educación ambiental</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">La idea es facilitar la implementación de la educación ambiental permanente en el sistema provincial. La firma se realizó en el marco del Mes del Ambiente.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todojujuy" style="background-color:#4498D0;">TODO JUJUY</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todojujuy/intensifican-acciones-por-la-ley-de-sanidad-vegetal_35329">
+                <span class="titulos_f">
+                                    06:03 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todojujuy/intensifican-acciones-por-la-ley-de-sanidad-vegetal_35329">Intensifican acciones por la ley de sanidad vegetal</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Sanidad Agropecuaria provincial, convocó a integrantes de la comisión de Sanidad Vegetal a una mesa de diálogo para abordar los avances logrados en el marco de la ley.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./espectaculos" style="background-color:#a73d4c;">MÚSICA</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/espectaculos/caro-escobar-se-presenta-en-macedonio_35330">
+                <span class="titulos_f">
+                                    07:02 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/espectaculos/caro-escobar-se-presenta-en-macedonio_35330">Caro Escobar se presenta en Macedonio</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">La cita es hoy a las 21.30 en la Casa de Macedonio Graz, para escuchar música popular y de raíz latinoamericana junto a Caro Escobar.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todojujuy" style="background-color:#4498D0;">TODO JUJUY</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todojujuy/siu--diaguita-para-el-personal-de-la-unju_35294">
+                <span class="titulos_f">
+                                    08:03 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todojujuy/siu--diaguita-para-el-personal-de-la-unju_35294">SIU – Diaguita para el personal de la UNJu</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">El curso estuvo  destinado a agentes de las áreas de compras, contrataciones y patrimonio de la casa de estudios jujeña.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./policiales" style="background-color:#D50000;">POLICIALES</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/policiales/amenazaban-con-un-arma-blanca-fueron-detenidas_35334">
+                <span class="titulos_f">
+                                    01:03 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/policiales/amenazaban-con-un-arma-blanca-fueron-detenidas_35334">Amenazaban con un arma blanca, fueron detenidas</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Dos mujeres robaron las pertenencias a otra en un sector de Coronel Arias. Efectivos de la Brigada procedieron a detenerlas y secuestrarle un arma blanca y los elementos robados.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todojujuy" style="background-color:#4498D0;">TODO JUJUY</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todojujuy/cronograma-de-pagos-de-mayo_35314">
+                <span class="titulos_f">
+                                    03/06 11:19 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todojujuy/cronograma-de-pagos-de-mayo_35314">Cronograma de pagos de Mayo</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">El Gobierno de la provincia anunció el cronograma de pagos de los haberes correspondientes al mes de mayo. Dará inicio el día lunes con las fuerzas de seguridad, Policía de la Provincia y Servicio Penitenciario.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todoelpais" style="background-color:#7F4908;">TODO EL PAÍS</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todoelpais/el-pais-contra-la-violencia-de-genero_35325">
+                <span class="titulos_f">
+                                    03/06 19:03 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todoelpais/el-pais-contra-la-violencia-de-genero_35325">El país contra la violencia de género</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Miles de personas participaron frente al Congreso de la concentración que busca visibilizar la lucha contra los femicidios y la violencia de género. Hay concentraciones en todo el país.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todojujuy" style="background-color:#4498D0;">TODO JUJUY</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todojujuy/jorge-beron-en-tiempode-donacion-de-organos_35324">
+                <span class="titulos_f">
+                                    03/06 17:21 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todojujuy/jorge-beron-en-tiempode-donacion-de-organos_35324">Jorge Berón en #TiempoDe donación de órganos</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">El titular del Cucaijuy, Jorge Berón, estuvo en #TiempoDe. El profesional habló de los trasplantes, los avances en la ciencia y reiteró que “todos podemos ser donantes”.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todojujuy" style="background-color:#4498D0;">TODO JUJUY</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todojujuy/matuk-debemos-encontrar-consenso-entre-todos_35316">
+                <span class="titulos_f">
+                                    03/06 12:46 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todojujuy/matuk-debemos-encontrar-consenso-entre-todos_35316">Matuk: “Debemos encontrar consenso entre todos”</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">El Ministro de Gobierno, Alberto Matuk, hizo referencia a la situación del transporte interjurisdiccional en la provincia. Expresó que siguen dialogando con los diferentes sectores interesados y que el objetivo es llegar a un consenso por lo que seguirán trabajando en el tema.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./deportes" style="background-color:#478627;">FÚTBOL</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/deportes/debut-con-triunfo-para-racing_35340">
+                <span class="titulos_f">
+                                    03/06 21:19 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/deportes/debut-con-triunfo-para-racing_35340">Debut con triunfo para Racing</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">La Academia superó por 2-0 a Independiente de Neuquén y se clasificó a los 16avos de final, en los que se medirá con Tigre. Brian Fernández, quien ingresó en el complemento, anotó los dos goles.</div>
+    </div>
+</div>    
+     
+    	    	   
+    	<div id="lista">
+    <div id="lista2">
+    	<p class="titulos_s">
+        	            <a href="./todoelpais" style="background-color:#7F4908;">TODO EL PAÍS</a>
+                                    <span class="barrita">&raquo;</span>
+            <a href="http://m.todojujuy.com/todoelpais/cristina-quotla-vida-se-protege-con-politicas-publicasquot_35321">
+                <span class="titulos_f">
+                                    03/06 16:08 hs
+                                </span>                               
+            </a>
+                    </p>
+        <div class="titulos_m"><a href="http://m.todojujuy.com/todoelpais/cristina-quotla-vida-se-protege-con-politicas-publicasquot_35321">Cristina: &quot;La vida se protege con políticas públicas&quot;</a></div>
+                <div class="cuerpo" style="margin:5px 0; color:#3A3A3A">Así lo afirmó la Presidenta al inaugurar obras en Mendoza, donde pidió que “además de rezar hace falta hacer, militar y trabajar. Además, enfatizó que “no hay balance económico que cierre si no cierra el balance social”.</div>
+    </div>
+</div>    
+     
+</div>    
+    <!--SECCIONES-->     
+    <div class="titulo_separador" id="menuservicios">&nbsp;SECCIONES &#8250;</div>
+<div id="seccion" style="background:#4498D0;">
+    	<a href="./todojujuy" class="link_seccion"><span class="icon-arrow-right2"></span> &nbsp;TODO JUJUY</a>
+</div>
+<div id="seccion" style="background:#15699D;">
+    	<a href="./todoelinterior" class="link_seccion"><span class="icon-arrow-right2"></span> &nbsp;TODO EL INTERIOR</a>
+</div>
+<div id="seccion" style="background:#7F4908;">
+    	<a href="./todoelpais" class="link_seccion"><span class="icon-arrow-right2"></span> &nbsp;TODO EL PAÍS</a>
+</div>
+<div id="seccion" style="background:#989898;">
+    	<a href="./todoelmundo" class="link_seccion"><span class="icon-arrow-right2"></span> &nbsp;TODO EL MUNDO</a>
+</div>
+<div id="seccion" style="background:#D50000;">
+    	<a href="./policiales" class="link_seccion"><span class="icon-arrow-right2"></span> &nbsp;POLICIALES</a>
+</div>
+<div id="seccion" style="background:#478627;">
+    	<a href="./deportes" class="link_seccion"><span class="icon-arrow-right2"></span> &nbsp;DEPORTES</a>
+</div>
+<div id="seccion" style="background:#84CCC3;">
+    	<a href="./salud" class="link_seccion"><span class="icon-arrow-right2"></span> &nbsp;SALUD</a>
+</div>
+<div id="seccion" style="background:#a73d4c;">
+    	<a href="./espectaculos" class="link_seccion"><span class="icon-arrow-right2"></span> &nbsp;ESPECTÁCULOS</a>
+</div>
+<div id="seccion" style="background:#e9a124;">
+    	<a href="./todotecno" class="link_seccion"><span class="icon-arrow-right2"></span> &nbsp;TODO TECNO</a>
+</div>
+<div id="seccion" style="background:#1aa7a9;">
+    	<a href="./politica" class="link_seccion"><span class="icon-arrow-right2"></span> &nbsp;POLÍTICA</a>
+</div>
+<div id="seccion" style="background:#114e50;">
+    	<a href="./detodounpoco" class="link_seccion"><span class="icon-arrow-right2"></span> &nbsp;DE TODO UN POCO</a>
+</div>
+<div id="seccion" style="background:#169a0c;">
+    	<a href="./whatsapp" class="link_seccion"><span class="icon-arrow-right2"></span> &nbsp;WHATSAPP</a>
+</div>
+<div id="seccion" style="background:#782789;">
+    	<a href="./especiales/fne2015" class="link_seccion"><span class="icon-arrow-right2"></span> &nbsp;FNE 2015</a>
+</div>
+<div class="titulo_separador">&nbsp;SERVICIOS &#8250;</div>
+<div id="servicios">	
+	  <a href="cines"><div class="s">&nbsp;<span class="icon-film"></span> &nbsp;CARTELERA DE CINE</div></a>
+    <a href="farmacias"><div class="s">&nbsp;<span class="icon-aid-kit"></span> &nbsp;FARMACIAS DE TURNO</div></a>
+    <a href="ampliar-clima"><div class="s">&nbsp;<span class="icon-sun"></span> &nbsp;CLIMA</div></a>
+    <a href="cotizacion"><div class="s">&nbsp;<span class="icon-coin-dollar"></span> &nbsp;COTIZACI&Oacute;N MONEDAS</div></a>
+    <a href="horoscopo"><div class="s">&nbsp;<span class="icon-infinite"></span> &nbsp;HOR&Oacute;SCOPO</div></a>
+</div>    <!--FIN SECCIONES-->         
+           
 <div id="lista3">
-  <div id="pie">
-    <div class="derechos">TodoJujuy.com &copy; 2015</div>
-  </div>
+	<div id="pie">
+    	<p><a title="VERSI&Oacute;N DE ESCRITORIO" href="http://www.todojujuy.com/?e=true">Versi&oacute;n de escritorio</a>        
+        <div class="derechos">TodoJujuy.com &copy; 2015<br />Todos los derechos reservados</div>
+     </div>
 </div>
+<script src="http://m.todojujuy.com/movil/js/jquery.slicknav.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.nav-menu').click(function(e) {
+        $('#menu-nuevo').toggle();
+    });;
+});
+</script>
+   
 </body>
 </html>
