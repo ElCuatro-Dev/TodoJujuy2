@@ -33,7 +33,10 @@ function onConfirmQuit(button){
 }	
 </script>
 <script>
-$(document).ready(function(){		
+$(document).ready(function(){	
+	$(".nav-button").click(function () {
+		$(".nav-button,.primary-nav").toggleClass("open");
+	}); 	
 	//Cargamos Notas portada
 	var data = {							
 		"key": "test",
@@ -66,15 +69,6 @@ $(document).ready(function(){
 			$('#cargando').html('Por favor intenta nuevamente en unos instantes. [#Error]');		
 			$('#cargando').show();				
 		} 
-	});
-});
-$(document).ready(function(e) {
-    $('.m3').click(function() { 
-		$('#secciones').toggle( "blind" );
-	});
-	
-	$('.nav-close').click(function(e) {			
-		$('#secciones').toggle( "blind" );
 	});
 });
 

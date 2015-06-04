@@ -62,7 +62,10 @@ function exitFromApp()
 }	
 </script>
 <script>
-$(document).ready(function(){		
+$(document).ready(function(){	
+	$(".nav-button").click(function () {
+		$(".nav-button,.primary-nav").toggleClass("open");
+	}); 	
 	//Cargamos Notas portada
 	var data = {							
 		"key": "test",				
@@ -98,15 +101,6 @@ $(document).ready(function(){
 		} 
 	});
 });
-$(document).ready(function(e) {
-    $('.m3').click(function() { 
-		$('#secciones').toggle( "blind" );
-	});
-	
-	$('.nav-close').click(function(e) {			
-		$('#secciones').toggle( "blind" );
-	});
-});
 
 function ocultarMenu() {
 	$('#secciones').toggle( "blind" );
@@ -132,45 +126,34 @@ function activarswp() {
 </head>
 
 <body>
-<div id="header">
-	<div class="m1">
-        
-    </div>   
-    <div class="m2">
-        <a href="index.html"><div class="logotodojujuy"></div></a>
-    </div>
-    <div class="m3">
-        <div id="menu_secciones"><div class="nav-menu"></div></div>  
-    </div>  
-    <div class="separador"></div>
-</div>
-<div id="secciones">
-    <div id="lista_secciones">
-    	<div id="menu-nuevo">
-            <div class="menu1">
+<div id="menu">
+	<button class="logo">logo</button>
+    <button class="nav-button">Menu</button>
+    <ul class="primary-nav">
+        <li><a href="en-vivo.html"><span class="icon-circle-right rojo"></span> EN VIVO</a></li>
+        <li><a href="index.html"><span class="icon-circle-right rojo"></span> HOY</a></li>
+        <li class="parent"><a href="#">Secciones</a>
             <ul class="secciones">
                 <li class="nav-titulo">Cargando secciones</li>
             </ul>
-            </div>
-            <div class="menu2">
+        </li>
+        <li class="parent"><a href="#">Servicios</a>
             <ul>
-                <li class="nav-titulo nav-titulo-3"><a title="EN VIVO" href="en-vivo.html" class="sin-borde"><span class="icon-circle-right rojo"></span> EN VIVO</a></li>
-                <li class="nav-titulo nav-titulo-3"><a title="HOY" href="index.html" class="sin-borde"><span class="icon-circle-right rojo"></span> HOY</a></li>
-                <li class="nav-titulo nav-titulo-2">SERVICIOS</li>
-                <li class="der"><a href="cines.html">CARTELERA DE CINE</a></li>
-                <li class="der"><a href="farmacias.html">FARMACIAS DE TURNO</a></li>
-                <li class="der"><a href="ampliar-clima.html">CLIMA</a></li>
-                <li class="der"><a href="cotizacion.html">COTIZACI&Oacute;N MONEDAS</a></li>
-                <li class="der"><a href="horoscopo.html">HOR&Oacute;SCOPO</a></li>
-                <li class="nav-titulo nav-titulo-2">MEDIOS EN VIVO</li>
-                <li class="der link" onClick="openDeviceBrowser('http://m.canal4jujuy.com.ar');"><span class="icon-youtube-play rojo"></span> Canal 4 Jujuy</li>
-                <li class="der link" onClick="openDeviceBrowser('http://m.radiocityfm.com');"><span class="icon-headphones rojo"></span> Radio City FM 107.1</li>
-                <li class="der link" onClick="openDeviceBrowser('http://m.radiofiestafm.com.ar');"><span class="icon-headphones rojo"></span> Radio Fiesta FM 91.7</li>
-            </ul> 
-            </div>
-            <div class="nav-close"><span class="icon-angle-double-up"></span></div>
-        </div>
-    </div>
+                <li><a href="cines.html"><span class="icon-chevron-right rojo"></span> Cartelera de Cine</a></li>
+                <li><a href="farmacis.html"><span class="icon-chevron-right rojo"></span> Farmacias de Turno</a></li>
+                <li><a href="horoscopo.html"><span class="icon-chevron-right rojo"></span> Hor&oacute;scopo</a></li>
+                <li><a href="clima.html"><span class="icon-chevron-right rojo"></span> Clima</a></li>
+                <li><a href="cotizacion.html"><span class="icon-chevron-right rojo"></span> Cotizaci&oacute;n de Monedas</a></li>
+            </ul>
+        </li>
+        <li class="parent"><a href="#">Medios en vivo</a>
+            <ul>
+                <li onClick="openDeviceBrowser('http://m.canal4jujuy.com.ar');"><a href="#"><span class="icon-youtube-play rojo"></span> Canal 4 Jujuy</a></li>
+                <li onClick="openDeviceBrowser('http://m.radiocityfm.com');"><a href="#"><span class="icon-headphones rojo"></span> Radio City FM 107.1</a></li>
+                <li onClick="openDeviceBrowser('http://m.radiofiestafm.com.ar');"><a href="#"><span class="icon-headphones rojo"></span> Radio Fiesta FM 91.7</a></li>
+            </ul>
+        </li>
+    </ul>
 </div>
 <div id="cargando">Cargando contenido, espere por favor...<br /><div class="loading"></div></div>
 <div id="fecha_actual"></div>
