@@ -18,7 +18,6 @@ function onDeviceReady() {
 function openDeviceBrowser (externalLinkToOpen){
 	window.open(externalLinkToOpen, '_system', 'location=no');
 }	
-
 document.addEventListener("exitButton",function(){
     navigator.notification.confirm(
            'Do you want to quit', 
@@ -32,9 +31,7 @@ function onConfirmQuit(button){
      navigator.app.exitApp(); 
    }
 }
-
 $(document).ready(function(){	
-
 	$(".nav-button").click(function () {
 		$(".nav-button,.primary-nav").toggleClass("open");
 	}); 
@@ -81,33 +78,10 @@ $(document).ready(function(e) {
 		$('#secciones').toggle();
 	});
 });
-
 function ocultarMenu() {
 	$('#secciones').toggle();
 };
 </script>
-<<<<<<< HEAD
-<!-- JS para partidos MAM -->
-<script type="text/javascript" src="http://m.todojujuy.com/movil/js/jquery.bxslider.min.js"></script>
-<link rel="stylesheet" type="text/css" href="http://m.todojujuy.com/movil/bxslider-partidos.css" />
-
-<script type="text/javascript">
-$(document).ready(function(){
-    $('.bxslider-partidos').bxSlider({
-        slideMargin: 2,
-        infiniteLoop: true,
-        pager: false,
-        auto: true
-    });
-});
-</script>
-
-<!-- Fin JS MAM -->
- 	
-<title>TodoJujuy.com - Movil | Una multitud dijo #NiUnaMenos en Jujuy</title>
-<link href="http://m.todojujuy.com/movil/css_movil.css?v=9240359" rel="stylesheet" type="text/css" />
-=======
->>>>>>> parent of e3f9ade... Upd 2.6.1
 </head>
 
 <body>
